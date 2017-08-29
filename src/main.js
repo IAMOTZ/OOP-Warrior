@@ -93,7 +93,7 @@ module.exports.Warrior = class extends Male {
         this._strength -= 1;
         enemy.strength -= 1;
     }
-    giveOrder(message, surbodinate){
+    giveOrder(surbodinate, message){
         surbodinate.task = message;
     }
     train(){
