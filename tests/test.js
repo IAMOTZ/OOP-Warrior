@@ -1,13 +1,13 @@
 const assert =  require('chai').assert;
-const myApp = require('../build/main.bundle.js');
+const myApp = require('../src/main.js');
 
-describe('Warrior Object Test', function(){
+describe('Warrior Object Test:', function(){
     describe('Testing Properties', function(){
         it('should return Tunmise for name', function(){
             assert.equal(new myApp.Warrior('Tunmise', 17, 'zuli', 'commander').name, 'Tunmise');
         })
         it('should return 18 for age', function(){
-            assert.equal(new myApp.Warrior('Tunmise', 17, 'zuli', 'commander').age, 18);
+            assert.equal(new myApp.Warrior('Tunmise', 17, 'zuli', 'commander').age, 17);
         })
         it('should return zuli for tribe', function(){
             assert.equal(new myApp.Warrior('Tunmise', 17, 'zuli', 'commander').tribe, 'zuli');
@@ -16,7 +16,7 @@ describe('Warrior Object Test', function(){
             assert.equal(new myApp.Warrior('Tunmise', 17, 'zuli', 'commander').post, 'commander');
         })
         it('should return alive for status', function(){
-            assert.equal(new myApp.Warrior('Tunmise', 17, 'zuli', 'commander').status, 'alive');
+            assert.equal(new myApp.Warrior('Tunmise', 17, 'zuli', 'commander').status, 'Healthy and strong');
         })
         it('should return 10 for strength', function(){
             assert.equal(new myApp.Warrior('Tunmise', 17, 'zuli', 'commander').strength, 10);

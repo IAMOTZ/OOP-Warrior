@@ -70,8 +70,6 @@
 "use strict";
 
 
-var _set = function set(object, property, value, receiver) { var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent !== null) { set(parent, property, value, receiver); } } else if ("value" in desc && desc.writable) { desc.value = value; } else { var setter = desc.set; if (setter !== undefined) { setter.call(receiver, value); } } return value; };
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -80,37 +78,24 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-// i might have to change the entry point of the app to point to the es5 version of the app
-// i would alos need to tell moca to take its file as the es5 version 
-
 // Create an OOP implementation by modelling a real-world scenario/problem, 
 // while taking advantage of inheritance, 
 // encapsulation, polymorphism and the other OOP concepts. Push this solution to GitHub. 
 
 var Human = function () {
-    // constructor(){
-    //     this.status = 'alive';
-    //     this.strength = 2;
-    //     this.task = 'seeking for survival';
-    // }
-    function Human(name, age, tribe) {
+    function Human() {
         _classCallCheck(this, Human);
 
-        // super();
-        this.name = name;
-        this.age = age;
-        this.tribe = tribe;
-        this.strength = 5;
-        this.status = 'alive';
-        this.strength = 2;
-        this.task = 'seeking for survival';
+        this._status = 'alive';
+        this._strength = 2;
+        this._task = 'seeking for survival';
     }
 
     _createClass(Human, [{
         key: 'eat',
         value: function eat(food) {
             console.log('i just eat ' + food);
-            this.strength += 2;
+            this._strength += 2;
         }
     }, {
         key: 'sleep',
@@ -118,43 +103,20 @@ var Human = function () {
             console.log('i slept for ' + time);
         }
     }, {
-        key: 'name',
-        get: function get() {
-            return this.name;
-        }
-    }, {
-        key: 'age',
-        get: function get() {
-            return this.age;
-        }
-    }, {
-        key: 'tribe',
-        get: function get() {
-            return this.tribe;
-        }
-    }, {
-        key: 'status',
-        get: function get() {
-            return this.status;
-        },
-        set: function set(value) {
-            value = value;
-        }
-    }, {
         key: 'strength',
         get: function get() {
-            return this.strength;
+            return this._strength;
         },
         set: function set(value) {
-            this.strength += value;
+            this._strength += value;
         }
     }, {
         key: 'task',
         get: function get() {
-            return this.task;
+            return this._task;
         },
         set: function set(message) {
-            this.task = message;
+            this._task = message;
         }
     }], [{
         key: 'noOfHuman',
@@ -176,73 +138,61 @@ var Male = function (_Human) {
 
         var _this = _possibleConstructorReturn(this, (Male.__proto__ || Object.getPrototypeOf(Male)).call(this));
 
-        _this.name = name;
-        _this.age = age;
-        _this.tribe = tribe;
-        _this.strength = 5;
+        _this._name = name;
+        _this._age = age;
+        _this._tribe = tribe;
+        _this._strength = 5;
         return _this;
     }
 
     _createClass(Male, [{
         key: 'name',
         get: function get() {
-            return this.name;
-        },
-        set: function set(value) {
-            var a = true;
+            return this_.name;
         }
     }, {
         key: 'age',
         get: function get() {
-            return this.age;
+            return this._age;
         }
     }, {
         key: 'tribe',
         get: function get() {
-            return this.tribe;
+            return this._tribe;
         }
     }]);
 
     return Male;
 }(Human);
 
-var Warrior = function (_Human2) {
-    _inherits(Warrior, _Human2);
+module.exports.Warrior = function (_Male) {
+    _inherits(_class, _Male);
 
-    function Warrior(name, age, tribe, post) {
-        _classCallCheck(this, Warrior);
+    function _class(name, age, tribe, post) {
+        _classCallCheck(this, _class);
 
-        var _this2 = _possibleConstructorReturn(this, (Warrior.__proto__ || Object.getPrototypeOf(Warrior)).call(this, name, age, tribe));
+        var _this2 = _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).call(this, name, age, tribe));
 
-        _this2.post = post;
-        _set(Warrior.prototype.__proto__ || Object.getPrototypeOf(Warrior.prototype), 'strength', 10, _this2);
-        _this2.noOfKilled = 0;
+        _this2._post = post;
+        _this2._strength = 10;
+        _this2._noOfKilled = 0;
         return _this2;
     }
 
-    _createClass(Warrior, [{
+    _createClass(_class, [{
         key: 'kill',
 
-        // get status(){
-        //     if(this.strength >= 10){
-        //         return 'Healthy and strong';
-        //     } else if(this.strength != 0){
-        //         return 'Weak and injured';
-        //     } else if(strength <= 0) { 
-        //         return 'dead';
-        //     }
-        // }
+
         // Behaviours:
         value: function kill(enemy) {
-            enemy.status = 'dead';
-            enemy.strength = 0;
-            enemy.task = 'This warrior is dead';
+            enemy.strength = -enemy.strength;
+            enemy.task = 'To be with my ancestors';
             this.noOfKilled++;
         }
     }, {
         key: 'fight',
         value: function fight(enemy) {
-            this.strength -= 1;
+            this._strength -= 1;
             enemy.strength -= 1;
         }
     }, {
@@ -253,12 +203,12 @@ var Warrior = function (_Human2) {
     }, {
         key: 'train',
         value: function train() {
-            this.strength -= 1;
+            this._strength -= 1;
         }
     }, {
         key: 'report',
         value: function report() {
-            return 'I am ' + this.post + ' ' + this.name + ' and i am from tribe ' + this.tribe + '. \n I have a task: ' + this.task;
+            return 'I am ' + this._post + ' ' + this._name + ' and i am from tribe ' + this._tribe + '. \n I have a task: ' + this._task + '.';
         }
     }, {
         key: 'dismiss',
@@ -268,25 +218,36 @@ var Warrior = function (_Human2) {
     }, {
         key: 'post',
         get: function get() {
-            return this.post;
+            return this._post;
         },
         set: function set(post) {
-            this.post = post;
+            this._post = post;
         }
     }, {
         key: 'noOfKilled',
         get: function get() {
-            return this.noOfKilled;
+            return this._noOfKilled;
         },
         set: function set(value) {
-            this.noOfKilled += value;
+            this._noOfKilled += value;
+        }
+    }, {
+        key: 'status',
+        get: function get() {
+            if (this._strength >= 10) {
+                return 'Healthy and strong';
+            } else if (this._strength >= 1) {
+                return 'Weak and injured';
+            } else if (this._strength <= 0) {
+                return 'dead';
+            }
         }
     }]);
 
-    return Warrior;
-}(Human);
+    return _class;
+}(Male);
 
-var warriorA = new Warrior('Ogunniyi', 20, 'gaya', 'general');
+// let warriorA = new Warrior('Ogunniyi', 20, 'gaya', 'general');
 // let warriorB = new Warrior('Tunmise', 17, 'zuli', 'commander');
 // warriorA.kill(warriorB);
 // console.log(warriorB.status);
