@@ -32,7 +32,7 @@ describe('Warrior Object Test:', function(){
     describe('Testing behaviours', function(){
         it('should return 9 for strength', function(){
             assert.equal((function(){
-                    let warriorA = new Warrio('Ogunniyi', 20, 'gaya', 'general');
+                    let warriorA = new myApp.Warrior('Ogunniyi', 20, 'gaya', 'general');
                     warriorA.train();
                     return warriorA.strength;
                 })(), 9);
@@ -50,13 +50,13 @@ describe('Warrior Object Test:', function(){
                 let warriorA = new myApp.Warrior('Ogunniyi', 20, 'gaya', 'general');
                 warriorA.eat(); 
                 return warriorA.strength; 
-            })(), 12);
+            })(), 12);  
         })
         it('should return a task for task', function(){
             assert.equal((function(){
                 let warriorA = new myApp.Warrior('Ogunniyi', 20, 'gaya', 'general');
                 let warriorB = new myApp.Warrior('Tunmise', 17, 'zuli', 'commander');
-                warriorA.giveOrder(warriorB, 'kill the emnemy');
+                warriorA.giveOrder(warriorB, 'kill the enemy');
                 return warriorB.task;
             })(), 'kill the enemy');
         })
@@ -65,15 +65,15 @@ describe('Warrior Object Test:', function(){
                 let warriorA = new myApp.Warrior('Ogunniyi', 20, 'gaya', 'general');
                 let warriorB = new myApp.Warrior('Tunmise', 17, 'zuli', 'commander');
                 warriorA.dismiss(warriorB);
-                return warriorB.status;
+                return warriorB.post;
             })(), 'dismissed');
         })
         it('should return a message for report', function(){
             assert.equal((function(){
                 let warriorA = new myApp.Warrior('Ogunniyi', 20, 'gaya', 'general');
                 let warriorB = new myApp.Warrior('Tunmise', 17, 'zuli', 'commander');
-                warriorA.giveOrder(warriorB, 'kill the emnemy');
-                return warriorB.report;
+                warriorA.giveOrder(warriorB, 'kill the enemy');
+                return warriorB.report();
             })(), 'I am commander Tunmise and i am from tribe zuli. \n I have a task: kill the enemy.');
         })
         // i can still put other test here, for example, checking the dynamically created properties
