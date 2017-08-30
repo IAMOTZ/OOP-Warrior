@@ -2,12 +2,12 @@
   "name": "oop-warior",
   "version": "1.0.0",
   "description": "A program to simulate a warior with OOP programming",
-  "main": "src/main.js",
+  "main": "build/main.build.js",
   "directories": {
     "test": "tests"
   },
   "scripts": {
-    "start": "node src/main.js",
+    "start": "node build/main.build.js",
     "test": "mocha tests/test.js",
     "webpack": "webpack",
     "bebel": "babel --presets es2015 js/main.js -o build/main.bundle.js"
